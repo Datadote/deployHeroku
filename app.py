@@ -1,15 +1,9 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-#import libraries
-import json
-#import plotly
-
+  #import libraries
 import numpy as np
-import pandas as pd
-from flask import Flask, render_template,request
-import pickle#Initialize the flask App
+from flask import Flask, request, jsonify, render_template
+import pickle
 
+#Initialize the flask App
 app = Flask(__name__)
 model = pickle.load(open('model.pkl', 'rb'))
 
@@ -31,8 +25,6 @@ def predict():
     output = round(prediction[0], 2)
 
     return render_template('index.html', prediction_text='CO2 Emission of the vehicle is :{}'.format(output))
-
-app.run(debug=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
